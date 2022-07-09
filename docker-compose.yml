@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -10,17 +11,20 @@ services:
       MYSQL_USER: fullstacker
       MYSQL_PASSWORD: fd9jmmfds8
     container_name: mysql
+
   backend:
-    image: studentsystem:0.0.1-SNAPSHOT
+    build: ./backend
     restart: on-failure
     depends_on:
       - db
     container_name: backend
+
   frontend:
     build: ./frontend
     depends_on:
       - backend
     container_name: studentsystem
+
   nginx:
     build: ./nginx
     ports:
