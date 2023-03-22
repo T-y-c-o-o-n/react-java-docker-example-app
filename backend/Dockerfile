@@ -4,7 +4,7 @@ ADD ./pom.xml pom.xml
 ADD ./src src/
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:11
+FROM eclipse-temurin:11-alpine
 WORKDIR /app
 COPY --from=builder /app/target/studentsystem-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
